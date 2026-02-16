@@ -13,38 +13,159 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	<body>
 		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+			<header class="page-hero">
+				<p class="eyebrow">FILESYSTEM.md</p>
+				<h1>Unix file system, simplified</h1>
+				<p class="lede">
+					A concise, agent-friendly walkthrough of how Unix-like operating systems store, name, and
+					share data.
+				</p>
+			</header>
+
+			<section aria-labelledby="quick-facts">
+				<h2 id="quick-facts">Quick facts</h2>
+				<ul>
+					<li>Core OS component first implemented by Ken Thompson in 1969.</li>
+					<li>Everything lives in a single rooted tree at <code>/</code>; extra volumes get mounted onto directories.</li>
+					<li>Directories map names to inodes that hold data and metadata; hard links let multiple names point to one inode.</li>
+					<li>Early Unix often mounted a second disk at <code>/usr</code> to merge startup tools and user space.</li>
+				</ul>
+			</section>
+
+			<section aria-labelledby="principles">
+				<h2 id="principles">Principles</h2>
+				<p>
+					The filesystem provides storage plus a communication layer: small programs write files that others read, with pipes complementing that flow. Device files expose terminals, printers, and other hardware through the same interface. The layout remains one tree even when files live on other partitions, removable media, or network shares.
+				</p>
+			</section>
+
+			<section aria-labelledby="file-types">
+				<h2 id="file-types">File types</h2>
+				<ul>
+					<li>Regular files and directories.</li>
+					<li>Device files for hardware entry points.</li>
+					<li>Sockets and FIFO files for interprocess communication.</li>
+					<li>Symbolic links that reference other paths, even across filesystems.</li>
+				</ul>
+			</section>
+
+			<section aria-labelledby="layout">
+				<h2 id="layout">Conventional directory layout</h2>
+				<p>Common locations on Unix-like systems:</p>
+				<dl class="directory-list">
+					<div>
+						<dt><code>/</code></dt>
+						<dd>Root of the tree.</dd>
+					</div>
+					<div>
+						<dt><code>/bin</code></dt>
+						<dd>Essential binaries available even in single-user mode.</dd>
+					</div>
+					<div>
+						<dt><code>/boot</code></dt>
+						<dd>Files needed to start the system.</dd>
+					</div>
+					<div>
+						<dt><code>/dev</code></dt>
+						<dd>Device files for hardware and pseudo-devices.</dd>
+					</div>
+					<div>
+						<dt><code>/etc</code></dt>
+						<dd>System-wide configuration.</dd>
+					</div>
+					<div>
+						<dt><code>/home</code></dt>
+						<dd>User home directories on many systems.</dd>
+					</div>
+					<div>
+						<dt><code>/lib</code></dt>
+						<dd>Shared libraries needed by core binaries.</dd>
+					</div>
+					<div>
+						<dt><code>/opt</code></dt>
+						<dd>Optional or locally installed software.</dd>
+					</div>
+					<div>
+						<dt><code>/proc</code></dt>
+						<dd>Virtual process info (procfs).</dd>
+					</div>
+					<div>
+						<dt><code>/root</code></dt>
+						<dd>Home directory for the superuser.</dd>
+					</div>
+					<div>
+						<dt><code>/sbin</code></dt>
+						<dd>System binaries for startup and recovery.</dd>
+					</div>
+					<div>
+						<dt><code>/tmp</code></dt>
+						<dd>Temporary files not expected to survive reboot.</dd>
+					</div>
+					<div>
+						<dt><code>/usr</code></dt>
+						<dd>Executables, libraries, headers, and shared resources that are not system-critical.</dd>
+					</div>
+					<div>
+						<dt><code>/var</code></dt>
+						<dd>Data that changes frequently: logs, mail, spools, caches, and long-lived temp files.</dd>
+					</div>
+				</dl>
+			</section>
+
+			<section aria-labelledby="system-notes">
+				<h2 id="system-notes">System notes</h2>
+				<p>
+					File systems manage how applications share storage, whether on disks, SSDs, tapes, optical media, or RAM disks such as <code>tmpfs</code>. Distributed file systems extend the model across networked machines. Virtual file systems expose computed data, like <code>procfs</code> and <code>sysfs</code>, through the same path-based interface.
+				</p>
+			</section>
+
+			<section aria-labelledby="references">
+				<h2 id="references">See also</h2>
+				<ul>
+					<li>Filesystem Hierarchy Standard (FHS)</li>
+					<li>ext2, ext3, ext4, Btrfs, ZFS, HAMMER, JFS, Veritas File System, Unix File System (UFS)</li>
+				</ul>
+				<p>
+					Source: <a href="https://homepages.uc.edu/~thomam/Intro_Unix_Text/File_System.html">Intro Unix text on file systems</a>.
+				</p>
+			</section>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style>
+	.page-hero {
+		margin-bottom: 2rem;
+	}
+	.eyebrow {
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		font-size: 0.8em;
+		color: rgb(var(--gray));
+		margin: 0 0 0.4rem 0;
+	}
+	.lede {
+		max-width: 46ch;
+	}
+	.directory-list {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: 1rem;
+		margin: 1rem 0 0;
+		padding: 0;
+	}
+	.directory-list div {
+		background: white;
+		border-radius: 12px;
+		box-shadow: var(--box-shadow);
+		padding: 1rem;
+	}
+	.directory-list dt {
+		font-weight: 700;
+		margin-bottom: 0.25rem;
+	}
+	.directory-list dd {
+		margin: 0;
+	}
+</style>
