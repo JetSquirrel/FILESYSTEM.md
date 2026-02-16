@@ -1,6 +1,6 @@
 {
-	"name": "astro-blog-starter-template",
-	"description": "Build a personal website, blog, or portfolio with Astro.",
+	"name": "filesystem-md",
+	"description": "Markdown-first reference for the Unix file system.",
 	"cloudflare": {
 		"label": "Astro Framework Starter",
 		"products": [

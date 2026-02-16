@@ -153,3 +153,111 @@ hr {
 	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
 }
+
+header {
+	margin: 0;
+	padding: 0 1em;
+	background: white;
+	box-shadow: 0 2px 8px rgba(var(--black), 5%);
+}
+h2 {
+	margin: 0;
+	font-size: 1em;
+}
+h2 a,
+h2 a.active {
+	text-decoration: none;
+}
+nav {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+nav a {
+	display: inline-block;
+	padding: 1em 0.5em;
+	color: var(--black);
+	border-bottom: 4px solid transparent;
+	text-decoration: none;
+}
+.internal-links {
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+}
+nav a.active {
+	font-weight: bolder;
+	text-decoration: underline;
+	border-bottom-color: var(--accent);
+}
+.source {
+	border: 1px solid rgb(var(--black));
+	border-radius: 999px;
+	padding: 0.35em 0.9em;
+}
+footer {
+	padding: 2em 1em 6em 1em;
+	background: linear-gradient(var(--gray-gradient)) no-repeat;
+	color: rgb(var(--gray));
+	text-align: center;
+}
+footer a {
+	color: inherit;
+}
+.page-hero {
+	margin-bottom: 2rem;
+}
+.eyebrow {
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	font-size: 0.8em;
+	color: rgb(var(--gray));
+	margin: 0 0 0.4rem 0;
+}
+.lede {
+	max-width: 52ch;
+}
+.cta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	margin-top: 1rem;
+}
+.button,
+.ghost {
+	display: inline-block;
+	padding: 0.65rem 1.1rem;
+	border-radius: 999px;
+	text-decoration: none;
+	font-weight: 700;
+	border: 2px solid transparent;
+}
+.button {
+	background: rgb(var(--black));
+	color: white;
+}
+.ghost {
+	border-color: rgb(var(--black));
+	color: rgb(var(--black));
+}
+.doc {
+	background: white;
+	border-radius: 16px;
+	box-shadow: var(--box-shadow);
+	padding: 1.5rem;
+}
+.doc :is(h2, h3) {
+	margin-top: 1.5rem;
+}
+.source-note {
+	margin-top: 2rem;
+	font-size: 0.95rem;
+	color: rgb(var(--gray));
+}
+@media (max-width: 720px) {
+	.button,
+	.ghost {
+		width: 100%;
+		text-align: center;
+	}
+}
