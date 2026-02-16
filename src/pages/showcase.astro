@@ -1,0 +1,86 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+
+const pageTitle = 'Filesystem Agent Showcase';
+const pageDescription = 'Projects that lean on filesystem paradigms to give agents a unified interface.';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`${pageTitle} | ${SITE_TITLE}`} description={pageDescription} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<header class="page-hero">
+				<p class="eyebrow">Showcase</p>
+				<h1>{pageTitle}</h1>
+				<p class="lede">{pageDescription}</p>
+			</header>
+
+			<section class="doc showcase">
+				<article class="showcase-item">
+					<h2>
+						<a href="https://github.com/volcengine/OpenViking" target="_blank" rel="noreferrer">OpenViking</a>
+					</h2>
+					<p class="eyebrow">字节跳动开源的一款AI Agent上下文管理系统：OpenViking</p>
+					<p>OpenViking的核心创新是文件系统范式，其不再把上下文当作文本切片，而是用文件系统来统一管理。</p>
+					<p>开发者可以像管理本地文件一样构建Agent大脑，以文件系统范式统一管理Agent所需的记忆、资源和技能。</p>
+					<ul>
+						<li>用文件系统管理范式解决了上下文碎片化问题。</li>
+						<li>分层上下文可按需加载，降低了Token消耗。</li>
+						<li>记忆可以自迭代进化。</li>
+						<li>检索过程可视化，完整记录检索轨迹，浏览了哪些目录、选了哪些文件等。</li>
+					</ul>
+					<p class="tags">#OpenViking #aiagent记忆 #aiagent</p>
+				</article>
+
+				<article class="showcase-item">
+					<h2>
+						<a href="https://github.com/c4pt0r/agfs" target="_blank" rel="noreferrer">AGFS</a>
+					</h2>
+					<p class="eyebrow">Aggregated File System (Agent FS) — Everything is a file, in RESTful APIs.</p>
+					<p>When coordinating multiple agents across queues, databases, storage, and more, AGFS unifies those backends as filesystem operations so agents only need to know how to read and write files.</p>
+					<p class="callout">
+						Traditional approach: <code>redis.set("key", "value")</code><br />
+						AGFS approach: <code>echo "value" &gt; /kvfs/keys/mykey</code>
+					</p>
+					<p class="callout">
+						Traditional approach: <code>sqs.send_message(queue, msg)</code><br />
+						AGFS approach: <code>echo "msg" &gt; /queuefs/q/enqueue</code>
+					</p>
+					<p class="callout">
+						Traditional approach: <code>s3.put_object(bucket, key, data)</code><br />
+						AGFS approach: <code>cp file /s3fs/bucket/key</code>
+					</p>
+					<ul>
+						<li>AI understands file operations natively—no bespoke API surface per service.</li>
+						<li>Unified interface across backends reduces coordination overhead for multi-agent systems.</li>
+						<li>Shell primitives like pipes and redirects enable easy composition and debugging.</li>
+					</ul>
+				</article>
+
+				<article class="showcase-item">
+					<h2>
+						<a href="https://jakobemmerling.de/posts/fuse-is-all-you-need/" target="_blank" rel="noreferrer"
+							>FUSE is All You Need</a
+						>
+					</h2>
+					<p class="eyebrow">Giving agents access to anything via filesystems</p>
+					<p>January 11, 2026 — Jakob Emmerling explores how mounting data into a sandboxed filesystem streamlines agent tooling.</p>
+					<ul>
+						<li>Highlights recent agent harnesses (Turso AgentFS, Anthropic Agent SDK, Vercel) that rely on shell and FS access.</li>
+						<li>Shows filesystem patterns for long-context handling, scratch planning, and progressive disclosure.</li>
+						<li>Demonstrates how FUSE can expose domains like email so agents browse and act with <code>ls</code>, <code>cat</code>, and <code>mv</code>.</li>
+					</ul>
+					<p>Takeaway: treating “everything as files” gives agents a single, composable UI layer for data and actions.</p>
+				</article>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

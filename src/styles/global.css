@@ -246,6 +246,35 @@ footer a {
 	box-shadow: var(--box-shadow);
 	padding: 1.5rem;
 }
+.showcase {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+}
+.showcase-item {
+	padding: 0.5rem 0;
+	border-bottom: 1px solid rgb(var(--gray-light));
+}
+.showcase-item:last-child {
+	border-bottom: none;
+}
+.showcase-item h2 {
+	margin-bottom: 0.35rem;
+}
+.showcase-item ul {
+	margin: 0.5rem 0 1rem 1.25rem;
+}
+.callout {
+	background: rgba(var(--gray-light), 0.6);
+	border-radius: 8px;
+	padding: 0.75rem 0.9rem;
+	margin: 0.35rem 0 0.9rem 0;
+}
+.tags {
+	margin-top: 0.5rem;
+	color: rgb(var(--gray));
+	font-size: 0.95rem;
+}
 .doc :is(h2, h3) {
 	margin-top: 1.5rem;
 }
