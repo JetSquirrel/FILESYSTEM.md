@@ -32,16 +32,13 @@ const pageDescription = 'Projects that lean on filesystem paradigms to give agen
 					<h2>
 						<a href="https://github.com/volcengine/OpenViking" target="_blank" rel="noreferrer">OpenViking</a>
 					</h2>
-					<p class="eyebrow">字节跳动开源的一款AI Agent上下文管理系统：OpenViking</p>
-					<p>OpenViking的核心创新是文件系统范式，其不再把上下文当作文本切片，而是用文件系统来统一管理。</p>
-					<p>开发者可以像管理本地文件一样构建Agent大脑，以文件系统范式统一管理Agent所需的记忆、资源和技能。</p>
+					<p class="eyebrow">ByteDance open-source context OS for agents</p>
+					<p>Filesystem-first memory: contexts are files, not loose text chunks. Layered loading trims tokens while memories stay traceable.</p>
 					<ul>
-						<li>用文件系统管理范式解决了上下文碎片化问题。</li>
-						<li>分层上下文可按需加载，降低了Token消耗。</li>
-						<li>记忆可以自迭代进化。</li>
-						<li>检索过程可视化，完整记录检索轨迹，浏览了哪些目录、选了哪些文件等。</li>
+						<li>Unified place for skills, resources, and memory.</li>
+						<li>On-demand layers keep context lean.</li>
+						<li>Retrieval is visualized end-to-end.</li>
 					</ul>
-					<p class="tags">#OpenViking #aiagent记忆 #aiagent</p>
 				</article>
 
 				<article class="showcase-item">
@@ -49,23 +46,17 @@ const pageDescription = 'Projects that lean on filesystem paradigms to give agen
 						<a href="https://github.com/c4pt0r/agfs" target="_blank" rel="noreferrer">AGFS</a>
 					</h2>
 					<p class="eyebrow">Aggregated File System (Agent FS) — Everything is a file, in RESTful APIs.</p>
-					<p>When coordinating multiple agents across queues, databases, storage, and more, AGFS unifies those backends as filesystem operations so agents only need to know how to read and write files.</p>
-					<p class="callout">
-						Traditional approach: <code>redis.set("key", "value")</code><br />
-						AGFS approach: <code>echo "value" &gt; /kvfs/keys/mykey</code>
-					</p>
-					<p class="callout">
-						Traditional approach: <code>sqs.send_message(queue, msg)</code><br />
-						AGFS approach: <code>echo "msg" &gt; /queuefs/q/enqueue</code>
-					</p>
-					<p class="callout">
-						Traditional approach: <code>s3.put_object(bucket, key, data)</code><br />
-						AGFS approach: <code>cp file /s3fs/bucket/key</code>
-					</p>
+					<p>Unifies queues, databases, storage, and KV as file paths so agents just read and write.</p>
+					<div class="callout">
+						<p><strong>Examples</strong></p>
+						<p><code>redis.set("key", "value")</code> → <code>echo "value" &gt; /kvfs/keys/mykey</code></p>
+						<p><code>sqs.send_message(queue, msg)</code> → <code>echo "msg" &gt; /queuefs/q/enqueue</code></p>
+						<p><code>s3.put_object(bucket, key, data)</code> → <code>cp file /s3fs/bucket/key</code></p>
+					</div>
 					<ul>
-						<li>AI understands file operations natively—no bespoke API surface per service.</li>
-						<li>Unified interface across backends reduces coordination overhead for multi-agent systems.</li>
-						<li>Shell primitives like pipes and redirects enable easy composition and debugging.</li>
+						<li>Native mental model for LLMs: ls, cat, echo.</li>
+						<li>Single interface reduces coordination overhead.</li>
+						<li>Pipes and redirects keep composition and debugging simple.</li>
 					</ul>
 				</article>
 
@@ -76,13 +67,13 @@ const pageDescription = 'Projects that lean on filesystem paradigms to give agen
 						>
 					</h2>
 					<p class="eyebrow">Giving agents access to anything via filesystems</p>
-					<p>January 11, 2026 — Jakob Emmerling explores how mounting data into a sandboxed filesystem streamlines agent tooling.</p>
+					<p>Jakob Emmerling (2026-01-11) shows how mounting data through FUSE gives agents a calm, unified surface.</p>
 					<ul>
-						<li>Highlights recent agent harnesses (Turso AgentFS, Anthropic Agent SDK, Vercel) that rely on shell and FS access.</li>
-						<li>Shows filesystem patterns for long-context handling, scratch planning, and progressive disclosure.</li>
-						<li>Demonstrates how FUSE can expose domains like email so agents browse and act with <code>ls</code>, <code>cat</code>, and <code>mv</code>.</li>
+						<li>Highlights agent harnesses built on shell + filesystem access.</li>
+						<li>Patterns for long context, scratch space, and progressive disclosure.</li>
+						<li>Example: email as directories/files so agents use <code>ls</code>, <code>cat</code>, <code>mv</code>.</li>
 					</ul>
-					<p>Takeaway: treating “everything as files” gives agents a single, composable UI layer for data and actions.</p>
+					<p>Takeaway: “everything as files” is a single UI layer for data and action.</p>
 				</article>
 			</section>
 		</main>
