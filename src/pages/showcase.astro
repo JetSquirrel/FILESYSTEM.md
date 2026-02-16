@@ -3,9 +3,16 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_TITLE } from '../consts';
+import { getEntry, render } from 'astro:content';
 
 const pageTitle = 'Filesystem Agent Showcase';
 const pageDescription = 'Projects that lean on filesystem paradigms to give agents a unified interface.';
+
+const doc = await getEntry('docs', 'showcase');
+if (!doc) {
+	throw new Error('Showcase doc is missing');
+}
+const { Content } = await render(doc);
 ---
 
 <!doctype html>
@@ -20,61 +27,15 @@ const pageDescription = 'Projects that lean on filesystem paradigms to give agen
 				<p class="eyebrow">Showcase</p>
 				<h1>{pageTitle}</h1>
 				<p class="lede">{pageDescription}</p>
+				<div class="cta">
+					<a class="ghost" href="/showcase.md" target="_blank" rel="noreferrer">
+						View as Markdown
+					</a>
+				</div>
 			</header>
 
 			<section class="doc showcase">
-				<p class="source-note">
-					Prefer raw text?
-					<a href="/showcase.md" target="_blank" rel="noreferrer">Open the Markdown file</a>.
-				</p>
-
-				<article class="showcase-item">
-					<h2>
-						<a href="https://github.com/volcengine/OpenViking" target="_blank" rel="noreferrer">OpenViking</a>
-					</h2>
-					<p class="eyebrow">ByteDance open-source context OS for agents</p>
-					<p>Filesystem-first memory: contexts are files, not loose text chunks. Layered loading trims tokens while memories stay traceable.</p>
-					<ul>
-						<li>Unified place for skills, resources, and memory.</li>
-						<li>On-demand layers keep context lean.</li>
-						<li>Retrieval is visualized end-to-end.</li>
-					</ul>
-				</article>
-
-				<article class="showcase-item">
-					<h2>
-						<a href="https://github.com/c4pt0r/agfs" target="_blank" rel="noreferrer">AGFS</a>
-					</h2>
-					<p class="eyebrow">Aggregated File System (Agent FS) — Everything is a file, in RESTful APIs.</p>
-					<p>Unifies queues, databases, storage, and KV as file paths so agents just read and write.</p>
-					<div class="callout">
-						<p><strong>Examples</strong></p>
-						<p><code>redis.set("key", "value")</code> → <code>echo "value" &gt; /kvfs/keys/mykey</code></p>
-						<p><code>sqs.send_message(queue, msg)</code> → <code>echo "msg" &gt; /queuefs/q/enqueue</code></p>
-						<p><code>s3.put_object(bucket, key, data)</code> → <code>cp file /s3fs/bucket/key</code></p>
-					</div>
-					<ul>
-						<li>Native mental model for LLMs: ls, cat, echo.</li>
-						<li>Single interface reduces coordination overhead.</li>
-						<li>Pipes and redirects keep composition and debugging simple.</li>
-					</ul>
-				</article>
-
-				<article class="showcase-item">
-					<h2>
-						<a href="https://jakobemmerling.de/posts/fuse-is-all-you-need/" target="_blank" rel="noreferrer"
-							>FUSE is All You Need</a
-						>
-					</h2>
-					<p class="eyebrow">Giving agents access to anything via filesystems</p>
-					<p>Jakob Emmerling (2026-01-11) shows how mounting data through FUSE gives agents a calm, unified surface.</p>
-					<ul>
-						<li>Highlights agent harnesses built on shell + filesystem access.</li>
-						<li>Patterns for long context, scratch space, and progressive disclosure.</li>
-						<li>Example: email as directories/files so agents use <code>ls</code>, <code>cat</code>, <code>mv</code>.</li>
-					</ul>
-					<p>Takeaway: “everything as files” is a single UI layer for data and action.</p>
-				</article>
+				<Content />
 			</section>
 		</main>
 		<Footer />

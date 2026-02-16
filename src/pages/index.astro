@@ -32,19 +32,13 @@ const { Content } = await render(doc);
 				<div class="cta">
 					<a class="button" href="#doc">Read online</a>
 					<a class="ghost" href={doc.data.source ?? DOC_SOURCE_URL} target="_blank" rel="noreferrer"
-						>Markdown source</a
+						>View as Markdown</a
 					>
 				</div>
 			</header>
 
 			<article id="doc" class="doc">
 				<Content />
-				<p class="source-note">
-					Prefer raw text?
-					<a href={doc.data.source ?? DOC_SOURCE_URL} target="_blank" rel="noreferrer"
-						>Open the Markdown file</a
-					>.
-				</p>
 			</article>
 		</main>
 		<Footer />
