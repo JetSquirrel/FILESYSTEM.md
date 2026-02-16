@@ -265,14 +265,27 @@ footer a {
 	background: white;
 	border-radius: 8px;
 	box-shadow: var(--box-shadow);
-	padding: 3rem 2.5rem;
+	padding: 3rem 3.5rem;
 	border: 1px solid rgba(var(--black), 0.06);
 }
 .showcase {
 	display: flex;
 	flex-direction: column;
-	gap: 2.5rem;
+	gap: 0;
 	padding: 0;
+}
+.showcase h2 {
+	margin-top: 2rem;
+}
+.showcase h2:first-of-type {
+	margin-top: 0;
+}
+.showcase hr {
+	border: none;
+	margin: 2rem 0;
+}
+.showcase > :first-child {
+	margin-top: 0;
 }
 .showcase-item {
 	padding: 2rem 2.5rem;
@@ -346,5 +359,8 @@ footer a {
 	.ghost {
 		width: 100%;
 		text-align: center;
+	}
+	.doc {
+		padding: 2rem 1.5rem;
 	}
 }
