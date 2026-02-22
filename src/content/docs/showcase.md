@@ -18,7 +18,7 @@ Filesystem-first memory: contexts are files, not loose text chunks. Layered load
 
 ---
 
-## AGFS (Agent FS)
+## AGFS (Aggregated File System)
 
 **Aggregated File System — Everything is a file, in RESTful APIs**
 
@@ -37,6 +37,34 @@ Unifies queues, databases, storage, and KV as file paths so agents just read and
 - Pipes and redirects keep composition and debugging simple
 
 [View project →](https://github.com/c4pt0r/agfs)
+
+---
+
+## AgentFS
+
+**SQLite-backed filesystem purpose-built for agent state**
+
+Stores every tool call and file operation in SQLite while exposing the filesystem over FUSE (Linux) or NFS (macOS), plus SDKs for TypeScript, Python, and Rust.
+
+- Full audit log of agent behavior lives alongside files
+- CLI and mounts let agents use `ls`, `cat`, and friends without extra plumbing
+- Specs and SDKs keep storage layout consistent across runtimes
+
+[View project →](https://github.com/tursodatabase/agentfs)
+
+---
+
+## VectorVFS
+
+**Your Linux filesystem as a vector database**
+
+Keeps embeddings in VFS extended attributes so files stay the source of truth—no separate index services.
+
+- Embeddings stored as xattrs; moves and renames stay in sync
+- Works with Meta Perception Encoders by default; pluggable models coming
+- Search files by similarity using the existing directory layout
+
+[View project →](https://github.com/perone/vectorvfs)
 
 ---
 
