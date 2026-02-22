@@ -1,366 +1,84 @@
-/*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
- */
+/* would like to ignore ./src/pages/og-image/[slug].png.ts */
+@import "tailwindcss";
+/* config for tailwindcss-typography plugin */
+@config "../../tailwind.config.ts";
 
-:root {
-	--accent: #4a4a4a;
-	--accent-dark: #2a2a2a;
-	--black: 30, 30, 30;
-	--gray: 120, 120, 120;
-	--gray-light: 245, 245, 245;
-	--gray-dark: 60, 60, 60;
-	--gray-gradient: rgba(var(--gray-light), 30%), #fff;
-	--box-shadow: 0 1px 3px rgba(var(--black), 0.08);
+/* use a selector-based strategy for dark mode */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* you could refactor below to use light-dark(), depending on your target audience */
+@theme {
+	--color-global-bg: oklch(98.48% 0 0);
+	--color-global-text: oklch(26.99% 0.0096 235.05);
+	--color-link: oklch(55.44% 0.0431 185.69);
+	--color-accent: oklch(55.27% 0.195 19.06);
+	--color-accent-2: oklch(18.15% 0 0);
+	--color-quote: oklch(55.27% 0.195 19.06);
 }
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-regular.woff") format("woff");
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
-}
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-bold.woff") format("woff");
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
-}
-body {
-	font-family: "Atkinson", sans-serif;
-	margin: 0;
-	padding: 0;
-	text-align: left;
-	background: #fafafa;
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-	color: rgb(var(--gray-dark));
-	font-size: 18px;
-	line-height: 1.8;
-	letter-spacing: 0.01em;
-}
-main {
-	width: 960px;
-	max-width: calc(100% - 3em);
-	margin: auto;
-	padding: 4em 1em;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
-	line-height: 1.4;
-	font-weight: 400;
-	letter-spacing: -0.01em;
-}
-h1 {
-	font-size: 2.5em;
-	font-weight: 300;
-}
-h2 {
-	font-size: 1.8em;
-	font-weight: 400;
-}
-h3 {
-	font-size: 1.4em;
-}
-h4 {
-	font-size: 1.2em;
-}
-h5 {
-	font-size: 1.1em;
-}
-strong,
-b {
-	font-weight: 700;
-}
-a {
-	color: var(--accent);
-}
-a:hover {
-	color: var(--accent);
-}
-p {
-	margin-bottom: 1em;
-}
-.prose p {
-	margin-bottom: 2em;
-}
-textarea {
-	width: 100%;
-	font-size: 16px;
-}
-input {
-	font-size: 16px;
-}
-table {
-	width: 100%;
-}
-img {
-	max-width: 100%;
-	height: auto;
-	border-radius: 8px;
-}
-code {
-	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
-	border-radius: 2px;
-}
-pre {
-	padding: 1.5em;
-	border-radius: 8px;
-}
-pre > code {
-	all: unset;
-}
-blockquote {
-	border-left: 4px solid var(--accent);
-	padding: 0 0 0 20px;
-	margin: 0px;
-	font-size: 1.333em;
-}
-hr {
-	border: none;
-	border-top: 1px solid rgb(var(--gray-light));
-}
-@media (max-width: 720px) {
-	body {
-		font-size: 18px;
+
+@layer base {
+	html {
+		color-scheme: light dark;
+		accent-color: var(--color-accent);
+		scrollbar-gutter: stable;
+
+		&[data-theme="light"] {
+			color-scheme: light;
+		}
+
+		&[data-theme="dark"] {
+			color-scheme: dark;
+			--color-global-bg: oklch(23.64% 0.0045 248);
+			--color-global-text: oklch(83.54% 0 264);
+			--color-link: oklch(70.44% 0.1133 349);
+			--color-accent: oklch(70.91% 0.1415 163.7);
+			--color-accent-2: oklch(94.66% 0 0);
+			--color-quote: oklch(94.8% 0.106 136.49);
+		}
 	}
-	main {
-		padding: 1em;
+
+	:target {
+		scroll-margin-block: 5ex;
 	}
-}
 
-.sr-only {
-	border: 0;
-	padding: 0;
-	margin: 0;
-	position: absolute !important;
-	height: 1px;
-	width: 1px;
-	overflow: hidden;
-	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
-	clip: rect(1px 1px 1px 1px);
-	/* maybe deprecated but we need to support legacy browsers */
-	clip: rect(1px, 1px, 1px, 1px);
-	/* modern browsers, clip-path works inwards from each corner */
-	clip-path: inset(50%);
-	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
-	white-space: nowrap;
-}
+	@view-transition {
+		navigation: auto;
+	}
 
-header {
-	margin: 0;
-	padding: 0 1em;
-	background: white;
-	box-shadow: none;
-	border-bottom: 1px solid rgba(var(--black), 0.06);
-}
-h2 {
-	margin: 0;
-	font-size: 1em;
-}
-h2 a,
-h2 a.active {
-	text-decoration: none;
-}
-nav {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-nav a {
-	display: inline-block;
-	padding: 1em 0.5em;
-	color: var(--black);
-	border-bottom: 4px solid transparent;
-	text-decoration: none;
-}
-.internal-links {
-	display: flex;
-	gap: 0.5rem;
-	align-items: center;
-}
-nav a.active {
-	font-weight: bolder;
-	text-decoration: underline;
-	border-bottom-color: var(--accent);
-}
-.source {
-	border: 1px solid rgb(var(--black));
-	border-radius: 4px;
-	padding: 0.4em 1em;
-	font-size: 0.9em;
-	letter-spacing: 0.02em;
-}
-footer {
-	padding: 3em 1em 4em 1em;
-	background: white;
-	color: rgb(var(--gray));
-	text-align: center;
-	font-size: 0.9em;
-	border-top: 1px solid rgba(var(--black), 0.06);
-}
-footer a {
-	color: inherit;
-}
-.page-hero {
-	margin-bottom: 3rem;
-	padding: 2rem 0;
-}
-.eyebrow {
-	text-transform: uppercase;
-	letter-spacing: 0.15em;
-	font-size: 0.75em;
-	color: rgb(var(--gray));
-	margin: 0 0 1rem 0;
-	font-weight: 500;
-}
-.lede {
-	max-width: 60ch;
-	font-size: 1.1em;
-	line-height: 1.7;
-	color: rgb(var(--gray-dark));
-}
-.cta {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 1rem;
-	margin-top: 2rem;
-}
-.button,
-.ghost {
-	display: inline-block;
-	padding: 0.75rem 1.5rem;
-	border-radius: 4px;
-	text-decoration: none;
-	font-weight: 400;
-	border: 1px solid transparent;
-	font-size: 0.95em;
-	letter-spacing: 0.02em;
-	transition: all 0.2s ease;
-}
-.button {
-	background: rgb(var(--black));
-	color: white;
-}
-.button:hover {
-	background: rgb(var(--gray-dark));
-}
-.ghost {
-	border-color: rgb(var(--black));
-	color: rgb(var(--black));
-}
-.ghost:hover {
-	background: rgba(var(--black), 0.05);
-}
-.doc {
-	background: white;
-	border-radius: 8px;
-	box-shadow: var(--box-shadow);
-	padding: 3rem 3.5rem;
-	border: 1px solid rgba(var(--black), 0.06);
-}
-.showcase {
-	display: flex;
-	flex-direction: column;
-	gap: 0;
-	padding: 0;
-}
-.showcase h2 {
-	margin-top: 2rem;
-}
-.showcase h2:first-of-type {
-	margin-top: 0;
-}
-.showcase hr {
-	border: none;
-	margin: 2rem 0;
-}
-.showcase > :first-child {
-	margin-top: 0;
-}
-.showcase-item {
-	padding: 2rem 2.5rem;
-	border: 1px solid rgba(var(--black), 0.08);
-	border-radius: 8px;
-	background: white;
-	box-shadow: var(--box-shadow);
-}
-.showcase-item h2 {
-	margin-bottom: 0.5rem;
-	font-size: 1.5em;
-	font-weight: 400;
-}
-.showcase-item h2 a {
-	color: rgb(var(--black));
-	text-decoration: none;
-	border-bottom: 1px solid transparent;
-	transition: border-color 0.2s ease;
-}
-.showcase-item h2 a:hover {
-	border-bottom-color: rgb(var(--black));
-}
-.showcase-item .eyebrow {
-	margin: 0 0 1rem 0;
-}
-.showcase-item p {
-	line-height: 1.8;
-}
-.showcase-item ul {
-	margin: 1rem 0 0 1.5rem;
-	line-height: 1.8;
-}
-.callout {
-	background: rgba(var(--gray-light), 0.5);
-	border-radius: 6px;
-	padding: 1.25rem 1.5rem;
-	margin: 1rem 0;
-	border-left: 2px solid rgba(var(--black), 0.15);
-}
-.callout p {
-	margin: 0.5rem 0;
-}
-.callout p:first-child {
-	margin-top: 0;
-}
-.callout p:last-child {
-	margin-bottom: 0;
-}
-.tags {
-	margin-top: 0.5rem;
-	color: rgb(var(--gray));
-	font-size: 0.95rem;
-}
-.doc :is(h2, h3) {
-	margin-top: 1.5rem;
-}
-.source-note {
-	margin-top: 3rem;
-	padding-top: 2rem;
-	border-top: 1px solid rgba(var(--black), 0.08);
-	font-size: 0.95em;
-	color: rgb(var(--gray));
-}
-.source-note a {
-	color: rgb(var(--black));
-	text-decoration: underline;
-	text-underline-offset: 2px;
-}
-@media (max-width: 720px) {
-	.button,
-	.ghost {
+	/* Astro image responsive styles, modified from -> https://docs.astro.build/en/guides/images/#responsive-image-styles */
+	:where([data-astro-image]) {
+		object-fit: var(--fit);
+		object-position: var(--pos);
+	}
+	[data-astro-image="full-width"] {
 		width: 100%;
-		text-align: center;
 	}
-	.doc {
-		padding: 2rem 1.5rem;
+	[data-astro-image="constrained"] {
+		max-width: 100%;
 	}
+}
+
+@layer components {
+	@import "./components/admonition.css";
+	@import "./components/github-card.css";
+
+	.cactus-link {
+		@apply hover:decoration-link underline underline-offset-2 hover:decoration-2;
+	}
+
+	.title {
+		@apply text-accent-2 text-3xl font-bold;
+	}
+}
+
+@utility prose {
+	--tw-prose-body: var(--color-global-text);
+	--tw-prose-bold: var(--color-global-text);
+	--tw-prose-bullets: var(--color-global-text);
+	--tw-prose-code: var(--color-global-text);
+	--tw-prose-headings: var(--color-accent-2);
+	--tw-prose-hr: 0.5px dashed #666;
+	--tw-prose-links: var(--color-global-text);
+	--tw-prose-quotes: var(--color-quote);
+	--tw-prose-th-borders: #666;
 }

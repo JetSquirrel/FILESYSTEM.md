@@ -1,43 +1,24 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import { SITE_TITLE } from '../consts';
-import { getEntry, render } from 'astro:content';
+import { getEntry, render } from "astro:content";
+import PageLayout from "@/layouts/Base.astro";
 
-const pageTitle = 'Filesystem Agent Showcase';
-const pageDescription = 'Projects that lean on filesystem paradigms to give agents a unified interface.';
+const doc = await getEntry("docs", "showcase");
 
-const doc = await getEntry('docs', 'showcase');
 if (!doc) {
-	throw new Error('Showcase doc is missing');
+	throw new Error("Showcase doc is missing");
 }
+
 const { Content } = await render(doc);
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={`${pageTitle} | ${SITE_TITLE}`} description={pageDescription} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<header class="page-hero">
-				<p class="eyebrow">Showcase</p>
-				<h1>{pageTitle}</h1>
-				<p class="lede">{pageDescription}</p>
-				<div class="cta">
-					<a class="ghost" href="/showcase.md" target="_blank" rel="noreferrer">
-						View as Markdown
-					</a>
-				</div>
-			</header>
-
-			<section class="doc showcase">
-				<Content />
-			</section>
-		</main>
-		<Footer />
-	</body>
-</html>
+<PageLayout
+	meta={{
+		title: doc.data.title,
+		description: doc.data.description,
+	}}
+>
+	<h1 class="title mb-8">{doc.data.title}</h1>
+	<article class="prose prose-sm prose-cactus max-w-none">
+		<Content />
+	</article>
+</PageLayout>

@@ -1,0 +1,32 @@
+---
+const socialLinks: {
+	friendlyName: string;
+	isWebmention?: boolean;
+	link: string;
+}[] = [
+	{
+		friendlyName: "Github",
+		link: "https://github.com/JetSquirrel/FILESYSTEM.md",
+	},
+];
+---
+
+<div class="flex flex-wrap items-end gap-x-2">
+	<p>Find me on</p>
+	<ul class="flex flex-1 items-center gap-x-2 sm:flex-initial">
+		{
+			socialLinks.map(({ friendlyName, isWebmention, link }) => (
+				<li class="flex">
+					<a
+						class="hover:text-link inline-block font-semibold"
+						href={link}
+						rel={`noreferrer ${isWebmention ? "me authn" : ""}`}
+						target="_blank"
+					>
+						{friendlyName}
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</div>

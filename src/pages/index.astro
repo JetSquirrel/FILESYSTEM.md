@@ -1,46 +1,100 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_DESCRIPTION, SITE_TITLE, DOC_SOURCE_URL } from '../consts';
-import { getEntry, render } from 'astro:content';
-
-const doc = await getEntry('docs', 'filesystem');
-
-if (!doc) {
-	throw new Error('Filesystem doc is missing');
-}
-
-const { Content } = await render(doc);
+import PageLayout from "@/layouts/Base.astro";
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead
-			title={doc.data.title ?? SITE_TITLE}
-			description={doc.data.description ?? SITE_DESCRIPTION}
-		/>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<header class="page-hero">
-				<p class="eyebrow">{SITE_TITLE}</p>
-				<h1>{doc.data.title}</h1>
-				<p class="lede">{doc.data.description}</p>
-				<div class="cta">
-					<a class="button" href="#doc">Read online</a>
-					<a class="ghost" href={doc.data.source ?? DOC_SOURCE_URL} target="_blank" rel="noreferrer"
-						>View as Markdown</a
-					>
-				</div>
-			</header>
+<PageLayout meta={{ title: "Home" }}>
+	<!-- Hero Section -->
+	<section class="flex flex-col lg:flex-row items-start gap-10 pt-8 pb-20 lg:gap-14">
+		<div class="flex-1 space-y-6">
+			<h1 class="text-4xl font-bold tracking-tight text-accent-2 leading-tight sm:text-5xl lg:text-6xl">
+				FILESYSTEM.md
+			</h1>
+			<p class="text-lg leading-relaxed opacity-80 sm:text-xl max-w-xl">
+				A standardized, interoperable spec for <strong class="text-accent-2">Agent-Native Filesystems</strong>.
+			</p>
+			<p class="text-base leading-relaxed opacity-70 max-w-xl">
+				Think of FILESYSTEM.md as a <strong class="text-accent-2">README for agents</strong>: a dedicated,
+				predictable place to define how AI coding agents interact with your project's filesystem.
+			</p>
+			<div class="flex flex-wrap gap-4 pt-4">
+				<a
+					href="/posts/filesystem-manifesto/"
+					class="inline-flex items-center gap-2 rounded-lg bg-accent px-6 py-3 font-semibold text-white transition-opacity hover:opacity-90"
+				>
+					Read Manifesto
+				</a>
+				<a
+					href="https://github.com/JetSquirrel/FILESYSTEM.md"
+					target="_blank"
+					rel="noreferrer"
+					class="inline-flex items-center gap-2 rounded-lg border border-accent-2/30 px-6 py-3 font-semibold transition-colors hover:bg-accent-2/5"
+				>
+					<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+						<path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+					</svg>
+					View on GitHub
+				</a>
+			</div>
+		</div>
 
-			<article id="doc" class="doc">
-				<Content />
-			</article>
-		</main>
-		<Footer />
-	</body>
-</html>
+		<!-- Code Preview Card -->
+		<div class="w-full flex-shrink-0 lg:w-[380px]">
+			<div class="overflow-hidden rounded-xl border border-accent-2/15 bg-accent-2/5">
+				<div class="flex items-center gap-2 border-b border-accent-2/10 px-4 py-2.5">
+					<span class="text-sm font-semibold opacity-70">📄 FILESYSTEM.md</span>
+				</div>
+				<pre class="overflow-x-auto p-4 text-sm leading-relaxed"><code class="opacity-80"><span class="text-accent font-semibold"># Core Directories</span>
+
+<span class="opacity-60">├──</span> <span class="text-accent-2 font-semibold">.agent/</span>
+<span class="opacity-60">│</span>   <span class="opacity-60">├──</span> bootstrap.md
+<span class="opacity-60">│</span>   <span class="opacity-60">├──</span> soul.md
+<span class="opacity-60">│</span>   <span class="opacity-60">├──</span> identity.md
+<span class="opacity-60">│</span>   <span class="opacity-60">└──</span> capabilities.md
+<span class="opacity-60">├──</span> <span class="text-accent-2 font-semibold">.memory/</span>
+<span class="opacity-60">│</span>   <span class="opacity-60">├──</span> context.md
+<span class="opacity-60">│</span>   <span class="opacity-60">└──</span> sessions/
+<span class="opacity-60">├──</span> <span class="text-accent-2 font-semibold">.sandbox/</span>
+<span class="opacity-60">└──</span> <span class="text-accent-2 font-semibold">.signals/</span>
+    <span class="opacity-60">└──</span> heartbeat.json</code></pre>
+			</div>
+		</div>
+	</section>
+
+	<!-- Why Section -->
+	<section class="border-t border-accent-2/10 py-20">
+		<h2 class="mb-4 text-center text-3xl font-bold text-accent-2 sm:text-4xl">
+			Why FILESYSTEM.md?
+		</h2>
+		<p class="mx-auto mb-16 max-w-2xl text-center text-lg opacity-70">
+			The filesystem is the most natural abstraction layer for agentic systems.
+			Rather than building complex memory APIs, leverage what LLMs already understand.
+		</p>
+
+		<div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+			<div class="space-y-3 rounded-xl border border-accent-2/10 p-6">
+				<div class="text-2xl">🗂️</div>
+				<h3 class="text-lg font-bold text-accent-2">Predictable Structure</h3>
+				<p class="text-sm leading-relaxed opacity-70">
+					Give agents a clear, predictable place for instructions — standardized directories that every agent can navigate.
+				</p>
+			</div>
+
+			<div class="space-y-3 rounded-xl border border-accent-2/10 p-6">
+				<div class="text-2xl">🤖</div>
+				<h3 class="text-lg font-bold text-accent-2">Agent-Native</h3>
+				<p class="text-sm leading-relaxed opacity-70">
+					Built for how LLMs actually work — hierarchical traversal, markdown documentation, shell-like interaction, and append-only workflows.
+				</p>
+			</div>
+
+			<div class="space-y-3 rounded-xl border border-accent-2/10 p-6">
+				<div class="text-2xl">🔗</div>
+				<h3 class="text-lg font-bold text-accent-2">Interoperable</h3>
+				<p class="text-sm leading-relaxed opacity-70">
+					Works across any coding agent or tool. One FILESYSTEM.md works with many agents — no proprietary lock-in.
+				</p>
+			</div>
+		</div>
+	</section>
+
+</PageLayout>
