@@ -44,3 +44,76 @@ const { Content } = await render(doc);
 		<Footer />
 	</body>
 </html>
+
+<style>
+	.page-hero {
+		margin-bottom: 3rem;
+		padding: 2rem 0;
+	}
+	.eyebrow {
+		text-transform: uppercase;
+		letter-spacing: 0.15em;
+		font-size: 0.75em;
+		color: rgb(var(--gray));
+		margin: 0 0 1rem 0;
+		font-weight: 500;
+	}
+	.lede {
+		max-width: 60ch;
+		font-size: 1.1em;
+		line-height: 1.7;
+		color: rgb(var(--gray-dark));
+	}
+	.cta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		margin-top: 2rem;
+	}
+	.button,
+	.ghost {
+		display: inline-block;
+		padding: 0.75rem 1.5rem;
+		border-radius: 4px;
+		text-decoration: none;
+		font-weight: 400;
+		border: 1px solid transparent;
+		font-size: 0.95em;
+		letter-spacing: 0.02em;
+		transition: all 0.2s ease;
+	}
+	.button {
+		background: rgb(var(--black));
+		color: white;
+	}
+	.button:hover {
+		background: rgb(var(--gray-dark));
+	}
+	.ghost {
+		border-color: rgb(var(--black));
+		color: rgb(var(--black));
+	}
+	.ghost:hover {
+		background: rgba(var(--black), 0.05);
+	}
+	.doc {
+		background: white;
+		border-radius: 8px;
+		box-shadow: var(--box-shadow);
+		padding: 3rem 3.5rem;
+		border: 1px solid rgba(var(--black), 0.06);
+	}
+	.doc :global(:is(h2, h3)) {
+		margin-top: 1.5rem;
+	}
+	@media (max-width: 720px) {
+		.button,
+		.ghost {
+			width: 100%;
+			text-align: center;
+		}
+		.doc {
+			padding: 2rem 1.5rem;
+		}
+	}
+</style>

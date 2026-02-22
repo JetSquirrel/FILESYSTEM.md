@@ -4,6 +4,7 @@
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
 
+/* Global CSS Variables */
 :root {
 	--accent: #4a4a4a;
 	--accent-dark: #2a2a2a;
@@ -14,6 +15,8 @@
 	--gray-gradient: rgba(var(--gray-light), 30%), #fff;
 	--box-shadow: 0 1px 3px rgba(var(--black), 0.08);
 }
+
+/* Font Faces */
 @font-face {
 	font-family: "Atkinson";
 	src: url("/fonts/atkinson-regular.woff") format("woff");
@@ -28,6 +31,8 @@
 	font-style: normal;
 	font-display: swap;
 }
+
+/* Base Element Styles */
 body {
 	font-family: "Atkinson", sans-serif;
 	margin: 0;
@@ -129,15 +134,8 @@ hr {
 	border: none;
 	border-top: 1px solid rgb(var(--gray-light));
 }
-@media (max-width: 720px) {
-	body {
-		font-size: 18px;
-	}
-	main {
-		padding: 1em;
-	}
-}
 
+/* Utility Classes */
 .sr-only {
 	border: 0;
 	padding: 0;
@@ -146,221 +144,18 @@ hr {
 	height: 1px;
 	width: 1px;
 	overflow: hidden;
-	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
 	clip: rect(1px 1px 1px 1px);
-	/* maybe deprecated but we need to support legacy browsers */
 	clip: rect(1px, 1px, 1px, 1px);
-	/* modern browsers, clip-path works inwards from each corner */
 	clip-path: inset(50%);
-	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
 }
 
-header {
-	margin: 0;
-	padding: 0 1em;
-	background: white;
-	box-shadow: none;
-	border-bottom: 1px solid rgba(var(--black), 0.06);
-}
-h2 {
-	margin: 0;
-	font-size: 1em;
-}
-h2 a,
-h2 a.active {
-	text-decoration: none;
-}
-nav {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-nav a {
-	display: inline-block;
-	padding: 1em 0.5em;
-	color: var(--black);
-	border-bottom: 4px solid transparent;
-	text-decoration: none;
-}
-.internal-links {
-	display: flex;
-	gap: 0.5rem;
-	align-items: center;
-}
-nav a.active {
-	font-weight: bolder;
-	text-decoration: underline;
-	border-bottom-color: var(--accent);
-}
-.source {
-	border: 1px solid rgb(var(--black));
-	border-radius: 4px;
-	padding: 0.4em 1em;
-	font-size: 0.9em;
-	letter-spacing: 0.02em;
-}
-footer {
-	padding: 3em 1em 4em 1em;
-	background: white;
-	color: rgb(var(--gray));
-	text-align: center;
-	font-size: 0.9em;
-	border-top: 1px solid rgba(var(--black), 0.06);
-}
-footer a {
-	color: inherit;
-}
-.page-hero {
-	margin-bottom: 3rem;
-	padding: 2rem 0;
-}
-.eyebrow {
-	text-transform: uppercase;
-	letter-spacing: 0.15em;
-	font-size: 0.75em;
-	color: rgb(var(--gray));
-	margin: 0 0 1rem 0;
-	font-weight: 500;
-}
-.lede {
-	max-width: 60ch;
-	font-size: 1.1em;
-	line-height: 1.7;
-	color: rgb(var(--gray-dark));
-}
-.cta {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 1rem;
-	margin-top: 2rem;
-}
-.button,
-.ghost {
-	display: inline-block;
-	padding: 0.75rem 1.5rem;
-	border-radius: 4px;
-	text-decoration: none;
-	font-weight: 400;
-	border: 1px solid transparent;
-	font-size: 0.95em;
-	letter-spacing: 0.02em;
-	transition: all 0.2s ease;
-}
-.button {
-	background: rgb(var(--black));
-	color: white;
-}
-.button:hover {
-	background: rgb(var(--gray-dark));
-}
-.ghost {
-	border-color: rgb(var(--black));
-	color: rgb(var(--black));
-}
-.ghost:hover {
-	background: rgba(var(--black), 0.05);
-}
-.doc {
-	background: white;
-	border-radius: 8px;
-	box-shadow: var(--box-shadow);
-	padding: 3rem 3.5rem;
-	border: 1px solid rgba(var(--black), 0.06);
-}
-.showcase {
-	display: flex;
-	flex-direction: column;
-	gap: 0;
-	padding: 0;
-}
-.showcase h2 {
-	margin-top: 2rem;
-}
-.showcase h2:first-of-type {
-	margin-top: 0;
-}
-.showcase hr {
-	border: none;
-	margin: 2rem 0;
-}
-.showcase > :first-child {
-	margin-top: 0;
-}
-.showcase-item {
-	padding: 2rem 2.5rem;
-	border: 1px solid rgba(var(--black), 0.08);
-	border-radius: 8px;
-	background: white;
-	box-shadow: var(--box-shadow);
-}
-.showcase-item h2 {
-	margin-bottom: 0.5rem;
-	font-size: 1.5em;
-	font-weight: 400;
-}
-.showcase-item h2 a {
-	color: rgb(var(--black));
-	text-decoration: none;
-	border-bottom: 1px solid transparent;
-	transition: border-color 0.2s ease;
-}
-.showcase-item h2 a:hover {
-	border-bottom-color: rgb(var(--black));
-}
-.showcase-item .eyebrow {
-	margin: 0 0 1rem 0;
-}
-.showcase-item p {
-	line-height: 1.8;
-}
-.showcase-item ul {
-	margin: 1rem 0 0 1.5rem;
-	line-height: 1.8;
-}
-.callout {
-	background: rgba(var(--gray-light), 0.5);
-	border-radius: 6px;
-	padding: 1.25rem 1.5rem;
-	margin: 1rem 0;
-	border-left: 2px solid rgba(var(--black), 0.15);
-}
-.callout p {
-	margin: 0.5rem 0;
-}
-.callout p:first-child {
-	margin-top: 0;
-}
-.callout p:last-child {
-	margin-bottom: 0;
-}
-.tags {
-	margin-top: 0.5rem;
-	color: rgb(var(--gray));
-	font-size: 0.95rem;
-}
-.doc :is(h2, h3) {
-	margin-top: 1.5rem;
-}
-.source-note {
-	margin-top: 3rem;
-	padding-top: 2rem;
-	border-top: 1px solid rgba(var(--black), 0.08);
-	font-size: 0.95em;
-	color: rgb(var(--gray));
-}
-.source-note a {
-	color: rgb(var(--black));
-	text-decoration: underline;
-	text-underline-offset: 2px;
-}
+/* Responsive Base Styles */
 @media (max-width: 720px) {
-	.button,
-	.ghost {
-		width: 100%;
-		text-align: center;
+	body {
+		font-size: 18px;
 	}
-	.doc {
-		padding: 2rem 1.5rem;
+	main {
+		padding: 1em;
 	}
 }

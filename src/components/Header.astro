@@ -13,3 +13,50 @@ import { SITE_TITLE, DOC_SOURCE_URL } from '../consts';
 		</div>
 	</nav>
 </header>
+
+<style>
+	header {
+		margin: 0;
+		padding: 0 1em;
+		background: white;
+		box-shadow: none;
+		border-bottom: 1px solid rgba(var(--black), 0.06);
+	}
+	h2 {
+		margin: 0;
+		font-size: 1em;
+	}
+	h2 a,
+	h2 a.active {
+		text-decoration: none;
+	}
+	nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	nav a {
+		display: inline-block;
+		padding: 1em 0.5em;
+		color: var(--black);
+		border-bottom: 4px solid transparent;
+		text-decoration: none;
+	}
+	.internal-links {
+		display: flex;
+		gap: 0.5rem;
+		align-items: center;
+	}
+	nav :global(a.active) {
+		font-weight: bolder;
+		text-decoration: underline;
+		border-bottom-color: var(--accent);
+	}
+	.source {
+		border: 1px solid rgb(var(--black));
+		border-radius: 4px;
+		padding: 0.4em 1em;
+		font-size: 0.9em;
+		letter-spacing: 0.02em;
+	}
+</style>

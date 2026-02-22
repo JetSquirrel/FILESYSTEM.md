@@ -41,3 +41,145 @@ const { Content } = await render(doc);
 		<Footer />
 	</body>
 </html>
+
+<style>
+	.page-hero {
+		margin-bottom: 3rem;
+		padding: 2rem 0;
+	}
+	.eyebrow {
+		text-transform: uppercase;
+		letter-spacing: 0.15em;
+		font-size: 0.75em;
+		color: rgb(var(--gray));
+		margin: 0 0 1rem 0;
+		font-weight: 500;
+	}
+	.lede {
+		max-width: 60ch;
+		font-size: 1.1em;
+		line-height: 1.7;
+		color: rgb(var(--gray-dark));
+	}
+	.cta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		margin-top: 2rem;
+	}
+	.ghost {
+		display: inline-block;
+		padding: 0.75rem 1.5rem;
+		border-radius: 4px;
+		text-decoration: none;
+		font-weight: 400;
+		border: 1px solid transparent;
+		font-size: 0.95em;
+		letter-spacing: 0.02em;
+		transition: all 0.2s ease;
+		border-color: rgb(var(--black));
+		color: rgb(var(--black));
+	}
+	.ghost:hover {
+		background: rgba(var(--black), 0.05);
+	}
+	.doc {
+		background: white;
+		border-radius: 8px;
+		box-shadow: var(--box-shadow);
+		padding: 3rem 3.5rem;
+		border: 1px solid rgba(var(--black), 0.06);
+	}
+	.showcase {
+		display: flex;
+		flex-direction: column;
+		gap: 0;
+		padding: 0;
+	}
+	.showcase :global(h2) {
+		margin-top: 2rem;
+	}
+	.showcase :global(h2:first-of-type) {
+		margin-top: 0;
+	}
+	.showcase :global(hr) {
+		border: none;
+		margin: 2rem 0;
+	}
+	.showcase > :global(:first-child) {
+		margin-top: 0;
+	}
+	.showcase :global(.showcase-item) {
+		padding: 2rem 2.5rem;
+		border: 1px solid rgba(var(--black), 0.08);
+		border-radius: 8px;
+		background: white;
+		box-shadow: var(--box-shadow);
+	}
+	.showcase :global(.showcase-item h2) {
+		margin-bottom: 0.5rem;
+		font-size: 1.5em;
+		font-weight: 400;
+	}
+	.showcase :global(.showcase-item h2 a) {
+		color: rgb(var(--black));
+		text-decoration: none;
+		border-bottom: 1px solid transparent;
+		transition: border-color 0.2s ease;
+	}
+	.showcase :global(.showcase-item h2 a:hover) {
+		border-bottom-color: rgb(var(--black));
+	}
+	.showcase :global(.showcase-item .eyebrow) {
+		margin: 0 0 1rem 0;
+	}
+	.showcase :global(.showcase-item p) {
+		line-height: 1.8;
+	}
+	.showcase :global(.showcase-item ul) {
+		margin: 1rem 0 0 1.5rem;
+		line-height: 1.8;
+	}
+	.showcase :global(.callout) {
+		background: rgba(var(--gray-light), 0.5);
+		border-radius: 6px;
+		padding: 1.25rem 1.5rem;
+		margin: 1rem 0;
+		border-left: 2px solid rgba(var(--black), 0.15);
+	}
+	.showcase :global(.callout p) {
+		margin: 0.5rem 0;
+	}
+	.showcase :global(.callout p:first-child) {
+		margin-top: 0;
+	}
+	.showcase :global(.callout p:last-child) {
+		margin-bottom: 0;
+	}
+	.showcase :global(.tags) {
+		margin-top: 0.5rem;
+		color: rgb(var(--gray));
+		font-size: 0.95rem;
+	}
+	.showcase :global(.source-note) {
+		margin-top: 3rem;
+		padding-top: 2rem;
+		border-top: 1px solid rgba(var(--black), 0.08);
+		font-size: 0.95em;
+		color: rgb(var(--gray));
+	}
+	.showcase :global(.source-note a) {
+		color: rgb(var(--black));
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+	@media (max-width: 720px) {
+		.ghost {
+			width: 100%;
+			text-align: center;
+		}
+		.doc {
+			padding: 2rem 1.5rem;
+		}
+	}
+</style>

@@ -8,3 +8,17 @@ const today = new Date();
 	<p>&copy; {today.getFullYear()} {SITE_TITLE}</p>
 	<p><a href={DOC_SOURCE_URL} target="_blank" rel="noreferrer">View the Markdown source</a></p>
 </footer>
+
+<style>
+	footer {
+		padding: 3em 1em 4em 1em;
+		background: white;
+		color: rgb(var(--gray));
+		text-align: center;
+		font-size: 0.9em;
+		border-top: 1px solid rgba(var(--black), 0.06);
+	}
+	footer a {
+		color: inherit;
+	}
+</style>
