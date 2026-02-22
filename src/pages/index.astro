@@ -18,10 +18,16 @@ import PageLayout from "@/layouts/Base.astro";
 			</p>
 			<div class="flex flex-wrap gap-4 pt-4">
 				<a
-					href="/posts/filesystem-manifesto/"
+					href="/blog/"
 					class="inline-flex items-center gap-2 rounded-lg bg-accent px-6 py-3 font-semibold text-white transition-opacity hover:opacity-90"
 				>
-					Read Manifesto
+					Read Blog
+				</a>
+				<a
+					href="/getting-started/"
+					class="inline-flex items-center gap-2 rounded-lg border border-accent-2/30 px-6 py-3 font-semibold transition-colors hover:bg-accent-2/5"
+				>
+					Getting Started
 				</a>
 				<a
 					href="https://github.com/JetSquirrel/FILESYSTEM.md"
@@ -57,6 +63,33 @@ import PageLayout from "@/layouts/Base.astro";
 <span class="opacity-60">└──</span> <span class="text-accent-2 font-semibold">.signals/</span>
     <span class="opacity-60">└──</span> heartbeat.json</code></pre>
 			</div>
+		</div>
+	</section>
+
+	<section class="border-t border-accent-2/10 py-20">
+		<h2 class="mb-4 text-center text-3xl font-bold text-accent-2 sm:text-4xl">
+			Start Here
+		</h2>
+		<p class="mx-auto mb-12 max-w-2xl text-center text-lg opacity-70">
+			Everything you need to evaluate, adopt, and contribute to FILESYSTEM.md.
+		</p>
+		<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+			<a class="rounded-xl border border-accent-2/10 p-6 transition-colors hover:bg-accent-2/5" href="/getting-started/">
+				<h3 class="mb-2 text-lg font-bold text-accent-2">Getting Started</h3>
+				<p class="text-sm opacity-70">Set up a project with deterministic bootstrap, memory layers, and skill loading.</p>
+			</a>
+			<a class="rounded-xl border border-accent-2/10 p-6 transition-colors hover:bg-accent-2/5" href="/compare/">
+				<h3 class="mb-2 text-lg font-bold text-accent-2">Compare Standards</h3>
+				<p class="text-sm opacity-70">See how FILESYSTEM.md relates to AGENTS.md, SOUL.md, USER.md, and MCP.</p>
+			</a>
+			<a class="rounded-xl border border-accent-2/10 p-6 transition-colors hover:bg-accent-2/5" href="/faq/">
+				<h3 class="mb-2 text-lg font-bold text-accent-2">FAQ</h3>
+				<p class="text-sm opacity-70">Get answers to common implementation and interoperability questions.</p>
+			</a>
+			<a class="rounded-xl border border-accent-2/10 p-6 transition-colors hover:bg-accent-2/5" href="/community/">
+				<h3 class="mb-2 text-lg font-bold text-accent-2">Community and Contribution</h3>
+				<p class="text-sm opacity-70">Learn how to propose changes, submit examples, and shape the spec.</p>
+			</a>
 		</div>
 	</section>
 

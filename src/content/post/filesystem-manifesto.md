@@ -13,6 +13,13 @@ It defines a standardized, interoperable, and secure Agent-Native Filesystem (AN
 
 This document is both a declaration of philosophy and a practical operational standard.
 
+Quick links:
+
+- [Getting Started](/getting-started/)
+- [FAQ](/faq/)
+- [FILESYSTEM.md vs Other Standards](/compare/)
+- [Community and Contribution](/community/)
+
 ---
 
 ## 1. Core Philosophy: The Filesystem is the Interface

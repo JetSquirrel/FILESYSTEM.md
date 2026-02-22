@@ -14,6 +14,8 @@ Filesystem-first memory: contexts are files, not loose text chunks. Layered load
 - On-demand layers keep context lean
 - Retrieval is visualized end-to-end
 
+**FILESYSTEM.md alignment:** clear context layering and explicit file-backed memory map directly to deterministic loading and auditability principles.
+
 [View project →](https://github.com/volcengine/OpenViking)
 
 ---
@@ -36,6 +38,8 @@ Unifies queues, databases, storage, and KV as file paths so agents just read and
 - Single interface reduces coordination overhead
 - Pipes and redirects keep composition and debugging simple
 
+**FILESYSTEM.md alignment:** demonstrates "filesystem as API" at system scale by mapping service operations to paths and file operations.
+
 [View project →](https://github.com/c4pt0r/agfs)
 
 ---
@@ -50,6 +54,8 @@ Stores every tool call and file operation in SQLite while exposing the filesyste
 - CLI and mounts let agents use `ls`, `cat`, and friends without extra plumbing
 - Specs and SDKs keep storage layout consistent across runtimes
 
+**FILESYSTEM.md alignment:** strongly supports append-only traceability, deterministic structure, and interoperability across runtimes.
+
 [View project →](https://github.com/tursodatabase/agentfs)
 
 ---
@@ -63,6 +69,8 @@ Keeps embeddings in VFS extended attributes so files stay the source of truth—
 - Embeddings stored as xattrs; moves and renames stay in sync
 - Works with Meta Perception Encoders by default; pluggable models coming
 - Search files by similarity using the existing directory layout
+
+**FILESYSTEM.md alignment:** keeps semantic memory attached to files instead of hidden side stores, reinforcing the filesystem as the source of truth.
 
 [View project →](https://github.com/perone/vectorvfs)
 
@@ -79,5 +87,7 @@ Jakob Emmerling (2026-01-11) on exposing domains as files via FUSE.
 - Example: email as directories/files so agents use `ls`, `cat`, `mv`
 
 **Takeaway:** "everything as files" gives agents a single, calm UI layer.
+
+**FILESYSTEM.md alignment:** the article validates progressive disclosure and filesystem-native workflows as a practical default for agent systems.
 
 [Read article →](https://jakobemmerling.de/posts/fuse-is-all-you-need/)

@@ -1,0 +1,39 @@
+---
+import PostPreview from "@/components/blog/PostPreview.astro";
+import { getAllPosts } from "@/data/post";
+import PageLayout from "@/layouts/Base.astro";
+import { collectionDateSort } from "@/utils/date";
+
+const posts = (await getAllPosts()).sort(collectionDateSort);
+---
+
+<PageLayout
+	meta={{
+		title: "Blog",
+		description: "Notes, manifesto updates, and posts on agent-native filesystems.",
+	}}
+>
+	<div class="mb-10 flex items-center gap-3">
+		<h1 class="title">Blog</h1>
+		<a class="text-accent" href="/rss.xml" target="_blank" rel="noreferrer">
+			<span class="sr-only">RSS feed</span>
+			<span aria-hidden="true" class="text-sm font-semibold">RSS</span>
+		</a>
+	</div>
+
+	<p class="mb-10 max-w-2xl opacity-75">
+		Core posts and updates for FILESYSTEM.md. For the full archive and tag view, visit
+		<a class="cactus-link" href="/posts/">Posts</a>.
+	</p>
+
+	<ul class="space-y-4" role="list">
+		{
+			posts.map((post) => (
+				<li class="grid gap-1 sm:grid-cols-[auto_1fr] sm:[&_q]:col-start-2">
+					<PostPreview post={post} withDesc />
+				</li>
+			))
+		}
+	</ul>
+</PageLayout>
+

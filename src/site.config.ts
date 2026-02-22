@@ -37,8 +37,12 @@ export const menuLinks: { path: string; title: string }[] = [
 		title: "Home",
 	},
 	{
-		path: "/posts/filesystem-manifesto/",
-		title: "Manifesto",
+		path: "/getting-started/",
+		title: "Getting Started",
+	},
+	{
+		path: "/blog/",
+		title: "Blog",
 	},
 	{
 		path: "/showcase/",

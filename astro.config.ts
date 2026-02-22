@@ -22,6 +22,11 @@ import { expressiveCodeOptions, siteConfig } from "./src/site.config";
 // https://astro.build/config
 export default defineConfig({
 	site: siteConfig.url,
+	redirects: {
+		"/manifesto": "/posts/filesystem-manifesto/",
+		"/filesystem-manifesto": "/posts/filesystem-manifesto/",
+		"/filesystem": "/posts/filesystem-manifesto/",
+	},
 	image: {
 		domains: ["webmention.io"],
 	},
