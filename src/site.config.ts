@@ -26,8 +26,7 @@ export const siteConfig: SiteConfig = {
 		- In the footer found in src/components/layout/Footer.astro L:12
 	*/
 	title: "FILESYSTEM.md",
-	// ! Please remember to replace the following site property with your own domain, used in astro.config.ts
-	url: "https://example.com/",
+	url: "https://filesystem.md/",
 };
 
 // Used to generate links in both the Header & Footer.

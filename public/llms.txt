@@ -1,0 +1,37 @@
+# FILESYSTEM.md
+
+> FILESYSTEM.md is a standardized, interoperable specification for Agent-Native Filesystems (ANF). It defines how AI coding agents interact with a project's filesystem — providing a dedicated, predictable structure for agent identity, memory, execution, and safety.
+
+Think of FILESYSTEM.md as a README for agents: a markdown-first contract that any AI agent can read and follow, without proprietary lock-in.
+
+## Specification
+
+- [Manifesto](/posts/filesystem-manifesto/): Full specification — core philosophy, workspace structure, context injection, memory model, skills, execution model, and security rules.
+- [Getting Started](/getting-started/): Step-by-step guide to adopt FILESYSTEM.md in a project. Covers creating core files, bootstrap sequence, memory layers, skills, and an adoption checklist.
+- [FAQ](/faq/): Common questions about FILESYSTEM.md — what it is, how it differs from other standards, context injection guidance, and secrets handling.
+- [Compare Standards](/compare/): How FILESYSTEM.md relates to AGENTS.md, SOUL.md, USER.md, and MCP (Model Context Protocol). These standards are complementary, not competing.
+
+## Community
+
+- [Showcase](/showcase/): Real-world projects and implementations using FILESYSTEM.md.
+- [Reading List](/readinglist/): Curated references on agent-native design, context engineering, and filesystem conventions.
+- [Community](/community/): How to propose changes, submit examples, and contribute to the spec.
+
+## Key Concepts
+
+- **Agent-Native Filesystem (ANF)**: A filesystem structure designed for AI agents, not just humans.
+- **Deterministic Bootstrap**: A defined startup sequence — read FILESYSTEM.md, inject identity files (SOUL.md, USER.md, AGENTS.md), load recent memory, index skills.
+- **On-Demand Loading**: Large memory and skill definitions are loaded only when required, conserving context window.
+- **Append-Only Logs**: All agent actions are recorded, never silently overwritten — enabling auditability and recovery.
+- **Security by Structure**: Clear read/write boundaries enforced through filesystem layout, not runtime code.
+
+## Relationship to Other Standards
+
+| Standard | Scope |
+|---|---|
+| FILESYSTEM.md | Workspace contract for agent memory, identity, and operations |
+| AGENTS.md | Agent instructions and behavior rules |
+| SOUL.md / USER.md | Identity and user preference overlays |
+| MCP | Tool and data connectivity protocol |
+
+Together: FILESYSTEM.md (filesystem contract) + AGENTS.md/SOUL.md/USER.md (behavior contract) + MCP (external tools) = complete agentic stack.
