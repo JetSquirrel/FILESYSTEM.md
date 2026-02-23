@@ -1,5 +1,7 @@
 ---
 import PageLayout from "@/layouts/Base.astro";
+import { Image } from "astro:assets";
+import manusContextImage from "@/content/images/Manus Context Engineering.004.png";
 ---
 
 <PageLayout meta={{ title: "Home" }}>
@@ -63,6 +65,29 @@ import PageLayout from "@/layouts/Base.astro";
 <span class="opacity-60">└──</span> <span class="text-accent-2 font-semibold">.signals/</span>
     <span class="opacity-60">└──</span> heartbeat.json</code></pre>
 			</div>
+		</div>
+	</section>
+
+	<section class="border-t border-accent-2/10 py-20">
+		<div class="mx-auto max-w-4xl space-y-4">
+			<div class="overflow-hidden rounded-xl border border-accent-2/10">
+				<Image
+					src={manusContextImage}
+					alt="Manus Context Engineering diagram"
+					class="h-auto w-full"
+					loading="lazy"
+				/>
+			</div>
+			<p class="text-sm opacity-70 text-center" >
+				<a
+					href="https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus"
+					target="_blank"
+					rel="noreferrer"
+					class="text-accent-2 underline underline-offset-4"
+				>
+					Context Engineering for AI Agents: Lessons from Building Manus
+				</a>
+			</p>
 		</div>
 	</section>
 
