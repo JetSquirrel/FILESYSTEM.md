@@ -4,6 +4,11 @@ description: Articles, talks, and threads on agent-native filesystems and contex
 source: /readinglist.md
 ---
 
+## Harness Engineering
+
+- [Harness engineering: leveraging Codex in an agent-first world](https://openai.com/index/harness-engineering/) — OpenAI: introduces harness engineering as a new discipline for building infrastructure, feedback loops, and constraints to reliably guide AI coding agents at scale.
+- [My AI Adoption Journey: Step 5 — Engineer the Harness](https://mitchellh.com/writing/my-ai-adoption-journey#step-5-engineer-the-harness) — Mitchell Hashimoto: practical approach to building constraints, tools, and documentation that prevent agent errors from recurring, treating the development environment like an immune system.
+
 ## Filesystem-First Agents
 
 - [How to build agents with filesystems and bash](https://vercel.com/blog/how-to-build-agents-with-filesystems-and-bash) — Vercel: practical patterns for keeping agent workflows grounded in files and shell semantics.
