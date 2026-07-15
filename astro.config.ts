@@ -7,6 +7,7 @@ import sitemap from "@astrojs/sitemap";
 import tailwind from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import expressiveCode from "astro-expressive-code";
+import robotsTxt from "astro-robots-txt";
 import webmanifest from "astro-webmanifest";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExternalLinks from "rehype-external-links";
@@ -32,6 +33,23 @@ export default defineConfig({
 	integrations: [
 		expressiveCode(expressiveCodeOptions),
 		sitemap(),
+		robotsTxt({
+			sitemap: true,
+			host: true,
+			policy: [
+				{ userAgent: "*", allow: "/" },
+				{ userAgent: "GPTBot", allow: "/" },
+				{ userAgent: "ClaudeBot", allow: "/" },
+				{ userAgent: "Google-Extended", allow: "/" },
+			],
+			transform(content) {
+				return `${content.trimEnd()}
+
+# LLM context index: https://filesystem.md/llms.txt
+# Full specification: https://filesystem.md/llms-full.txt
+`;
+			},
+		}),
 		mdx(),
 		webmanifest({
 			// See: https://github.com/alextim/astro-lib/blob/main/packages/astro-webmanifest/README.md

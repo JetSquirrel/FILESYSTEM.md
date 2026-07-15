@@ -1,0 +1,16 @@
+---
+import { getEntry, render } from "astro:content";
+import DocPage from "@/layouts/DocPage.astro";
+
+const doc = await getEntry("docs", "for-agents-operations");
+
+if (!doc) {
+	throw new Error("Agent operations doc is missing");
+}
+
+const { Content } = await render(doc);
+---
+
+<DocPage doc={doc} meta={{ jsonLdType: "TechArticle" }}>
+	<Content />
+</DocPage>

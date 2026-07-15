@@ -1,8 +1,11 @@
 ---
 title: "Filesystem agent showcase"
 description: "Projects that lean on the filesystem paradigm to organize agent context, skills, and backends."
+updatedDate: "15 Jul 2026"
 source: "/showcase.md"
 ---
+
+These projects are not FILESYSTEM.md-certified products. They are useful references for filesystem-first agent design: durable context, skills as files, and storage backends that speak `ls` / `cat` / `write` semantics. Map their patterns onto the ANF contract (`FILESYSTEM.md` + `AGENTS.md` + memory/skills/logs) rather than copying any one vendor layout.
 
 ## OpenViking
 

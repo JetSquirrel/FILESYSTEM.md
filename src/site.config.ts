@@ -14,7 +14,8 @@ export const siteConfig: SiteConfig = {
 		},
 	},
 	// Used as the default description meta property and webmanifest description
-	description: "Markdown-first reference for the Unix file system and agent-native filesystem conventions.",
+	description:
+		"Harness-agnostic Agent-Native Filesystem (ANF) standard — FILESYSTEM.md workspace contract for coding agents.",
 	// HTML lang property, found in src/layouts/Base.astro L:18 & astro.config.ts L:48
 	lang: "en-GB",
 	// Meta property, found in src/components/BaseHead.astro L:42
@@ -29,11 +30,19 @@ export const siteConfig: SiteConfig = {
 	url: "https://filesystem.md/",
 };
 
-// Used to generate links in both the Header & Footer.
+// Primary header nav — keep short; full set lives in footer.
 export const menuLinks: { path: string; title: string }[] = [
 	{
-		path: "/",
-		title: "Home",
+		path: "/posts/filesystem-manifesto/",
+		title: "Manifesto",
+	},
+	{
+		path: "/for-agents/",
+		title: "For Agents",
+	},
+	{
+		path: "/build/",
+		title: "Build",
 	},
 	{
 		path: "/getting-started/",
@@ -43,6 +52,46 @@ export const menuLinks: { path: string; title: string }[] = [
 		path: "/blog/",
 		title: "Blog",
 	},
+];
+
+// Full site map for footer (and anywhere that needs complete IA).
+export const footerLinks: { path: string; title: string }[] = [
+	{
+		path: "/posts/filesystem-manifesto/",
+		title: "Manifesto",
+	},
+	{
+		path: "/for-agents/",
+		title: "For Agents",
+	},
+	{
+		path: "/build/",
+		title: "Build",
+	},
+	{
+		path: "/infra/",
+		title: "Infra",
+	},
+	{
+		path: "/getting-started/",
+		title: "Getting Started",
+	},
+	{
+		path: "/why-filesystems/",
+		title: "Why Filesystems",
+	},
+	{
+		path: "/faq/",
+		title: "FAQ",
+	},
+	{
+		path: "/compare/",
+		title: "Compare",
+	},
+	{
+		path: "/community/",
+		title: "Community",
+	},
 	{
 		path: "/showcase/",
 		title: "Showcase",
@@ -50,6 +99,14 @@ export const menuLinks: { path: string; title: string }[] = [
 	{
 		path: "/readinglist/",
 		title: "Reading List",
+	},
+	{
+		path: "/blog/",
+		title: "Blog",
+	},
+	{
+		path: "/about/",
+		title: "About",
 	},
 ];
 

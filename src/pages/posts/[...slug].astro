@@ -1,10 +1,9 @@
 ---
-import { render } from "astro:content";
+import { getEntry, render } from "astro:content";
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 import { getAllPosts } from "@/data/post";
 import PostLayout from "@/layouts/BlogPost.astro";
 
-// if you're using an adaptor in SSR mode, getStaticPaths wont work -> https://docs.astro.build/en/guides/routing/#modifying-the-slug-example-for-ssr
 export const getStaticPaths = (async () => {
 	const blogEntries = await getAllPosts();
 	return blogEntries.map((post) => ({
@@ -16,9 +15,46 @@ export const getStaticPaths = (async () => {
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+
+/** Manifesto HTML is a presentation layer over docs/filesystem.md (single source of truth). */
+const isManifesto = post.id === "filesystem-manifesto";
+const manifestoDoc = isManifesto ? await getEntry("docs", "filesystem") : undefined;
+
+if (isManifesto && !manifestoDoc) {
+	throw new Error("Canonical manifesto source docs/filesystem.md is missing");
+}
+
+const bodyEntry = manifestoDoc ?? post;
+const { Content } = await render(bodyEntry);
+const sourcePath = isManifesto ? (manifestoDoc?.data.source ?? "/filesystem.md") : undefined;
 ---
 
-<PostLayout post={post}>
+<PostLayout post={post} bodyEntry={bodyEntry} sourcePath={sourcePath}>
+	{
+		isManifesto && (
+			<p class="not-prose mb-8 text-sm opacity-80">
+				Quick links:{" "}
+				<a class="cactus-link" href="/for-agents/">
+					For Agents
+				</a>
+				{" · "}
+				<a class="cactus-link" href="/getting-started/">
+					Getting Started
+				</a>
+				{" · "}
+				<a class="cactus-link" href="/faq/">
+					FAQ
+				</a>
+				{" · "}
+				<a class="cactus-link" href="/compare/">
+					Compare
+				</a>
+				{" · "}
+				<a class="cactus-link" href="/community/">
+					Community
+				</a>
+			</p>
+		)
+	}
 	<Content />
 </PostLayout>

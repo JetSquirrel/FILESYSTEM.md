@@ -2,35 +2,117 @@
 import PageLayout from "@/layouts/Base.astro";
 
 const meta = {
-	description: "I'm a starter theme for Astro.build",
+	description:
+		"About FILESYSTEM.md — the Agent-Native Filesystem standard, its maintainer, governance, license, and machine-readable entry points.",
 	title: "About",
 };
 ---
 
 <PageLayout meta={meta}>
-	<h1 class="title mb-12">About</h1>
+	<h1 class="title mb-12">About FILESYSTEM.md</h1>
 	<div class="prose prose-sm prose-cactus max-w-none">
 		<p>
-			Hi, I’m a starter Astro. I’m particularly great for getting you started with your own blogging
-			website.
+			<strong>FILESYSTEM.md</strong> is an open specification for
+			<strong>Agent-Native Filesystems (ANF)</strong>: a dedicated, predictable workspace contract
+			that tells AI coding agents how to use a project's identity, memory, skills, execution
+			boundaries, and safety rules.
 		</p>
-		<p>Here are my some of my awesome built in features:</p>
-		<ul class="list-inside list-disc" role="list">
-			<li>I'm ultra fast as I'm a static site</li>
-			<li>I'm fully responsive</li>
-			<li>I come with a light and dark mode</li>
-			<li>I'm easy to customise and add additional content</li>
-			<li>I have Tailwind CSS styling</li>
-			<li>Shiki code syntax highlighting</li>
-			<li>Satori for auto generating OG images for blog posts</li>
-		</ul>
 		<p>
-			Clone or fork my <a
-				class="cactus-link inline-block"
-				href="https://github.com/chrismwilliams/astro-cactus"
-				rel="noreferrer"
-				target="_blank">repo</a
-			> if you like me!
+			Think of it as a README for agents — markdown-first, interoperable across Codex, Cursor,
+			Claude Code, Copilot, and custom runtimes. It complements
+			<strong>AGENTS.md</strong> (shared behavior), thin harness adapters (for example
+			<code>CLAUDE.md</code> / <code>.cursor/rules/</code>), optional identity overlays, and
+			<strong>MCP</strong> for external tools.
 		</p>
+
+		<h2>Maintainer</h2>
+		<p>
+			The project is maintained by
+			<a
+				class="cactus-link inline-block"
+				href="https://github.com/JetSquirrel"
+				rel="noreferrer"
+				target="_blank">JetSquirrel</a
+			>. Contributions, issues, and implementation examples are welcome via the public repository.
+		</p>
+
+		<h2>Governance and contribution</h2>
+		<p>
+			FILESYSTEM.md evolves in the open. Proposals, clarifications, showcase submissions, and
+			adoption feedback should go through the community process described on the
+			<a class="cactus-link inline-block" href="/community/">Community</a> page and the
+			<a
+				class="cactus-link inline-block"
+				href="https://github.com/JetSquirrel/FILESYSTEM.md"
+				rel="noreferrer"
+				target="_blank">GitHub repository</a
+			>.
+		</p>
+		<ul class="list-inside list-disc" role="list">
+			<li>Propose changes as pull requests or issues with clear motivation and examples</li>
+			<li>Prefer interoperable, agent-readable conventions over tool-specific lock-in</li>
+			<li>Document MUST / SHOULD guidance carefully so humans and agents can both follow it</li>
+		</ul>
+
+		<h2>License</h2>
+		<p>
+			The specification and site content are released under the
+			<strong>MIT License</strong>. You may use, adapt, and redistribute the standard with
+			attribution.
+		</p>
+
+		<h2>Machine-readable entry points</h2>
+		<p>
+			In addition to the human-readable docs, the site publishes discovery files for crawlers and
+			LLMs:
+		</p>
+		<ul class="list-inside list-disc" role="list">
+			<li>
+				<a class="cactus-link inline-block" href="/for-agents/">/for-agents/</a> — executable
+				handbook for coding agents (bootstrap, memory, safety)
+			</li>
+			<li>
+				<a
+					class="cactus-link inline-block"
+					href="https://jetsquirrel.github.io/claude-code-study/"
+					rel="noreferrer"
+					target="_blank">Claude Code study guide</a
+				>
+				— public architecture notes (tools, permissions, memory, skills)
+			</li>
+			<li>
+				<a class="cactus-link inline-block" href="/llms.txt">/llms.txt</a> — curated index of
+				specification and community documents
+			</li>
+			<li>
+				<a class="cactus-link inline-block" href="/llms-full.txt">/llms-full.txt</a> — full inline
+				documentation set for single-request context loading
+			</li>
+			<li>
+				<a class="cactus-link inline-block" href="/filesystem.md">/filesystem.md</a> — raw Manifesto
+				markdown (canonical machine-readable source)
+			</li>
+			<li>
+				<a class="cactus-link inline-block" href="/robots.txt">/robots.txt</a> and
+				<a class="cactus-link inline-block" href="/sitemap-index.xml">/sitemap-index.xml</a> — crawl
+				discovery
+			</li>
+		</ul>
+
+		<h2>Start reading</h2>
+		<ul class="list-inside list-disc" role="list">
+			<li>
+				<a class="cactus-link inline-block" href="/posts/filesystem-manifesto/">Manifesto</a> —
+				full specification
+			</li>
+			<li>
+				<a class="cactus-link inline-block" href="/getting-started/">Getting Started</a> — adoption
+				guide
+			</li>
+			<li>
+				<a class="cactus-link inline-block" href="/compare/">Compare</a> — relationship to adjacent
+				standards
+			</li>
+		</ul>
 	</div>
 </PageLayout>

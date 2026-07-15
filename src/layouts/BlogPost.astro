@@ -8,26 +8,44 @@ import BaseLayout from "./Base.astro";
 
 interface Props {
 	post: CollectionEntry<"post">;
+	/** When set, headings/body metadata come from this entry (manifesto single-source). */
+	bodyEntry?: CollectionEntry<"docs"> | CollectionEntry<"post">;
+	/** Show Markdown source link (e.g. /filesystem.md). */
+	sourcePath?: string;
 }
 
-const { post } = Astro.props;
+const { post, bodyEntry, sourcePath } = Astro.props;
 const { ogImage, title, description, updatedDate, publishDate } = post.data;
 const socialImage = ogImage ?? `/og-image/${post.id}.png`;
-const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString();
-const { headings, remarkPluginFrontmatter } = await render(post);
+const articleDate = publishDate.toISOString();
+const dateModified = (updatedDate ?? publishDate).toISOString();
+const entryForBody = bodyEntry ?? post;
+const { headings, remarkPluginFrontmatter } = await render(entryForBody);
 const readingTime: string = remarkPluginFrontmatter.readingTime;
 ---
 
 <BaseLayout
 	meta={{
 		articleDate,
+		dateModified,
 		description,
 		ogImage: socialImage,
 		title,
 	}}
 >
 	<article class="grow break-words" data-pagefind-body>
-		<div id="blog-hero" class="mb-12"><Masthead content={post} readingTime={readingTime} /></div>
+		<div id="blog-hero" class="mb-12">
+			<Masthead content={post} readingTime={readingTime} />
+			{
+				sourcePath && (
+					<p class="mt-3 text-sm opacity-70">
+						<a class="cactus-link" href={sourcePath}>
+							View Markdown source
+						</a>
+					</p>
+				)
+			}
+		</div>
 		<div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
 			{!!headings.length && <TOC headings={headings} />}
 			<div

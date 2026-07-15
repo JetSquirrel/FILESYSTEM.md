@@ -5,47 +5,127 @@ import "@/styles/global.css";
 
 type Props = SiteMeta;
 
-const { articleDate, description, ogImage, title } = Astro.props;
+const { articleDate, dateModified, description, ogImage, title, jsonLdType, faqItems, howToSteps } =
+	Astro.props;
 
 const titleSeparator = "•";
 const siteTitle = `${title} ${titleSeparator} ${siteConfig.title}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const socialImageURL = new URL(ogImage ? ogImage : "/social-card.png", Astro.url).href;
 
-const jsonLd = articleDate
-	? {
+const author = {
+	"@type": "Person",
+	name: siteConfig.author,
+};
+
+const publisher = {
+	"@type": "Organization",
+	name: siteConfig.title,
+	url: siteConfig.url,
+};
+
+function buildJsonLd() {
+	if (articleDate) {
+		return {
 			"@context": "https://schema.org",
 			"@type": "BlogPosting",
 			headline: title,
-			description: description,
+			description,
 			image: socialImageURL,
 			datePublished: articleDate,
-			author: {
-				"@type": "Person",
-				name: siteConfig.author,
-			},
-			publisher: {
-				"@type": "Organization",
-				name: siteConfig.title,
-				url: siteConfig.url,
-			},
+			...(dateModified ? { dateModified } : { dateModified: articleDate }),
+			author,
+			publisher,
 			url: canonicalURL.href,
 			mainEntityOfPage: {
 				"@type": "WebPage",
 				"@id": canonicalURL.href,
 			},
-		}
-	: {
+		};
+	}
+
+	const type = jsonLdType ?? (Astro.url.pathname === "/" ? "WebSite" : "WebPage");
+
+	if (type === "WebSite") {
+		return {
 			"@context": "https://schema.org",
 			"@type": "WebSite",
 			name: siteConfig.title,
 			description: siteConfig.description,
 			url: siteConfig.url,
-			author: {
-				"@type": "Person",
-				name: siteConfig.author,
+			author,
+		};
+	}
+
+	if (type === "FAQPage" && faqItems?.length) {
+		return {
+			"@context": "https://schema.org",
+			"@type": "FAQPage",
+			name: title,
+			description,
+			url: canonicalURL.href,
+			dateModified,
+			author,
+			publisher,
+			mainEntity: faqItems.map((item) => ({
+				"@type": "Question",
+				name: item.question,
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: item.answer,
+				},
+			})),
+		};
+	}
+
+	if (type === "HowTo" && howToSteps?.length) {
+		return {
+			"@context": "https://schema.org",
+			"@type": "HowTo",
+			name: title,
+			description,
+			url: canonicalURL.href,
+			dateModified,
+			author,
+			publisher,
+			step: howToSteps.map((name, index) => ({
+				"@type": "HowToStep",
+				position: index + 1,
+				name,
+			})),
+		};
+	}
+
+	if (type === "TechArticle") {
+		return {
+			"@context": "https://schema.org",
+			"@type": "TechArticle",
+			headline: title,
+			description,
+			url: canonicalURL.href,
+			dateModified,
+			author,
+			publisher,
+			mainEntityOfPage: {
+				"@type": "WebPage",
+				"@id": canonicalURL.href,
 			},
 		};
+	}
+
+	return {
+		"@context": "https://schema.org",
+		"@type": "WebPage",
+		name: title,
+		description,
+		url: canonicalURL.href,
+		dateModified,
+		author,
+		publisher,
+	};
+}
+
+const jsonLd = buildJsonLd();
 ---
 
 <meta charset="utf-8" />
@@ -90,6 +170,9 @@ const jsonLd = articleDate
 		<>
 			<meta content={siteConfig.author} property="article:author" />
 			<meta content={articleDate} property="article:published_time" />
+			{(dateModified ?? articleDate) && (
+				<meta content={dateModified ?? articleDate} property="article:modified_time" />
+			)}
 		</>
 	)
 }
@@ -106,7 +189,6 @@ const jsonLd = articleDate
 
 {/* RSS auto-discovery */}
 <link href="/rss.xml" title="Blog" rel="alternate" type="application/rss+xml" />
-<link href="/notes/rss.xml" title="Notes" rel="alternate" type="application/rss+xml" />
 
 <meta content={Astro.generator} name="generator" />
 

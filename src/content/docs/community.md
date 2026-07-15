@@ -1,6 +1,7 @@
 ---
 title: "Community and Contribution"
 description: "How to contribute to FILESYSTEM.md and participate in the ecosystem."
+updatedDate: "15 Jul 2026"
 source: "/community.md"
 ---
 

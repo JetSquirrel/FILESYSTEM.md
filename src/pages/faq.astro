@@ -1,6 +1,8 @@
 ---
 import { getEntry, render } from "astro:content";
-import PageLayout from "@/layouts/Base.astro";
+import faqRaw from "@/content/docs/faq.md?raw";
+import DocPage from "@/layouts/DocPage.astro";
+import { extractFaqItems } from "@/utils/structured-data";
 
 const doc = await getEntry("docs", "faq");
 
@@ -9,17 +11,9 @@ if (!doc) {
 }
 
 const { Content } = await render(doc);
+const faqItems = extractFaqItems(faqRaw);
 ---
 
-<PageLayout
-	meta={{
-		title: doc.data.title,
-		description: doc.data.description,
-	}}
->
-	<h1 class="title mb-8">{doc.data.title}</h1>
-	<article class="prose prose-sm prose-cactus max-w-none">
-		<Content />
-	</article>
-</PageLayout>
-
+<DocPage doc={doc} meta={{ jsonLdType: "FAQPage", faqItems }}>
+	<Content />
+</DocPage>

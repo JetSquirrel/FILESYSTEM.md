@@ -19,9 +19,21 @@ export interface PaginationLink {
 
 export interface SiteMeta {
 	articleDate?: string | undefined;
+	dateModified?: string | undefined;
 	description?: string;
 	ogImage?: string | undefined;
 	title: string;
+	/** Structured data type override for non-blog pages. */
+	jsonLdType?: "WebSite" | "WebPage" | "TechArticle" | "FAQPage" | "HowTo" | undefined;
+	/** FAQPage mainEntity items (question/answer pairs). */
+	faqItems?: FaqItem[] | undefined;
+	/** HowTo step names in order. */
+	howToSteps?: string[] | undefined;
+}
+
+export interface FaqItem {
+	question: string;
+	answer: string;
 }
 
 /** Webmentions */

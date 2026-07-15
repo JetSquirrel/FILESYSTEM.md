@@ -1,6 +1,6 @@
 ---
 import { getEntry, render } from "astro:content";
-import PageLayout from "@/layouts/Base.astro";
+import DocPage from "@/layouts/DocPage.astro";
 
 const doc = await getEntry("docs", "showcase");
 
@@ -11,14 +11,6 @@ if (!doc) {
 const { Content } = await render(doc);
 ---
 
-<PageLayout
-	meta={{
-		title: doc.data.title,
-		description: doc.data.description,
-	}}
->
-	<h1 class="title mb-8">{doc.data.title}</h1>
-	<article class="prose prose-sm prose-cactus max-w-none">
-		<Content />
-	</article>
-</PageLayout>
+<DocPage doc={doc}>
+	<Content />
+</DocPage>

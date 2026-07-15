@@ -1,0 +1,55 @@
+---
+import type { CollectionEntry } from "astro:content";
+import FormattedDate from "@/components/FormattedDate.astro";
+import type { SiteMeta } from "@/types";
+import BaseLayout from "./Base.astro";
+
+interface Props {
+	doc: CollectionEntry<"docs">;
+	meta?: Partial<SiteMeta>;
+}
+
+const { doc, meta: metaOverrides = {} } = Astro.props;
+const updatedDate = doc.data.updatedDate;
+const description = doc.data.description ?? metaOverrides.description;
+const dateModified = updatedDate?.toISOString() ?? metaOverrides.dateModified;
+
+const meta: SiteMeta = {
+	title: doc.data.title,
+	description,
+	dateModified,
+	jsonLdType: metaOverrides.jsonLdType ?? "TechArticle",
+	faqItems: metaOverrides.faqItems,
+	howToSteps: metaOverrides.howToSteps,
+	articleDate: metaOverrides.articleDate,
+	ogImage: metaOverrides.ogImage,
+};
+---
+
+<BaseLayout meta={meta}>
+	<header class="mb-8 space-y-3">
+		<h1 class="title">{doc.data.title}</h1>
+		<div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm opacity-70">
+			{
+				updatedDate && (
+					<p>
+						Last updated:{" "}
+						<FormattedDate date={updatedDate} dateTimeOptions={{ month: "long" }} />
+					</p>
+				)
+			}
+			{
+				doc.data.source && (
+					<p>
+						<a class="cactus-link" href={doc.data.source}>
+							View Markdown source
+						</a>
+					</p>
+				)
+			}
+		</div>
+	</header>
+	<article class="prose prose-sm prose-cactus max-w-none" data-pagefind-body>
+		<slot />
+	</article>
+</BaseLayout>
